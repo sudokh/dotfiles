@@ -1,26 +1,43 @@
 #!/bin/bash
 
-# get battery info
-SUPPLY_STATUS=$( cat /sys/class/power_supply/BAT1/uevent | awk '/SUPPLY_STATUS=/ { print substr($0,21) }')
-ENERGY_NOW=$( cat /sys/class/power_supply/BAT1/uevent | awk '/ENERGY_NOW=/ { print substr($0,25) }')
-ENERGY_FULL=$( cat /sys/class/power_supply/BAT1/uevent | awk '/ENERGY_FULL=/ { print substr($0,26) }')
-BATTERY_NOW=$((ENERGY_NOW *100 / ENERGY_FULL))
+# for linux
+if [ $OSTYPE = 'linux-gnu' ]; then
+  UEVENT="/sys/class/power_supply/BAT1/uevent"
+  if [ -e  $UEVENT ]; then
+    # for WSL
+    ## get battery info
+    SUPPLY_STATUS=$( cat /sys/class/power_supply/BAT1/uevent | awk '/SUPPLY_STATUS=/ { print substr($0,21) }')
+    ENERGY_NOW=$( cat /sys/class/power_supply/BAT1/uevent | awk '/ENERGY_NOW=/ { print substr($0,25) }')
+    ENERGY_FULL=$( cat /sys/class/power_supply/BAT1/uevent | awk '/ENERGY_FULL=/ { print substr($0,26) }')
+    BATTERY_NOW=$((ENERGY_NOW *100 / ENERGY_FULL))
 
-# color setting
-# 100~60: blue, 59~30: green, 29~0: red
-if [ $BATTERY_NOW -gt 60 ]; then
-  BATTERY_NOW="$BATTERY_NOW%"
-elif [ $BATTERY_NOW -gt 30 ]; then
-  BATTERY_NOW="#[fg=colour226]$BATTERY_NOW%"
-else
-  BATTERY_NOW="#[fg=colour126]$BATTERY_NOW%"
-fi
+    ## color setting
+    ## 100~60: blue, 59~30: green, 29~0: red
+    if [ $BATTERY_NOW -gt 60 ]; then
+      BATTERY_NOW="$BATTERY_NOW%"
+    elif [ $BATTERY_NOW -gt 30 ]; then
+      BATTERY_NOW="#[fg=colour226]$BATTERY_NOW%"
+    else
+      BATTERY_NOW="#[fg=colour126]$BATTERY_NOW%"
+    fi
 
-# charging emoji
-if [ $SUPPLY_STATUS = "Discharging" ]; then
-  #echo -e "\U1F50B$BATTERY_NOW"
-  echo -e "$BATTERY_NOW\U1F50B"
+    ## charging emoji
+    if [ $SUPPLY_STATUS = "Discharging" ]; then
+      #echo -e "\U1F50B$BATTERY_NOW"
+      echo -e "| $BATTERY_NOW\U1F50B "
+    else
+      #echo -e "\U1F50C$BATTERY_NOW"
+      echo -e "| $BATTERY_NOW\U1F50C "
+    fi
+  else
+    # for VPS
+    echo ""
+  fi # if [ -e  $UEVENT ];
+
+elif [ $OSTYPE = 'darwin' ]; then
+  echo ""
+
 else
-  #echo -e "\U1F50C$BATTERY_NOW"
-  echo -e "$BATTERY_NOW\U1F50C"
-fi
+  echo ""
+
+fi # if [ $OSTYPE = 'linux-gnu' ];
