@@ -1,7 +1,7 @@
 # dotfiles for sudokh
 
 # Installation
-## For Linux or Mac OX X
+## For Linux or Mac OS
 ### Using Git
 ```
 cd $HOME \
@@ -15,5 +15,6 @@ cd $HOME \
 dotfiles/  
   |--.vimrc  
   |--.zshrc  
+  |--.tmux.conf  
   |--.  
   `--  
