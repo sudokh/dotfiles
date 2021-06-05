@@ -1,25 +1,13 @@
-"#######################################
-" init.vim
+"---------------------------------------
+" .vimrc
 " Maintained by SUDO Kohei
-"
-" # Config file
-" ~/.config/nvim/
-"   - init.vim
-"   - dein.toml
-"
-" # dein.vim
-"  mkdir -p ~/.cache/dein
-"  cd ~/.cache/dein
-"  curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-"  chmod 700 installer.sh
-"  sh ./installer.sh ~/.cache/dein
-"#######################################
+"---------------------------------------
 
 "---------------------------------------
 " Normal
 "---------------------------------------
+"-- Encode --"
 "{{{
-"- Encode -"
 " ファイル読み込み時の文字コード
 set encoding=utf-8
 " ファイル保存時の文字コード
@@ -28,8 +16,10 @@ set fileencoding=utf-8
 set fileencodings=utf-8,euc-jp,sjis,cp932
 " ファイル読み込み時に，想定される改行コードを指定
 set fileformats=unix,mac,dos
+"}}}
 
-"- Appearance -"
+"-- Appearance --"
+"{{{
 " 行番号を表示
 set number
 " タイトルを表示
@@ -57,6 +47,8 @@ set wildmenu
 set scrolloff=5
 " 行を折り返さない
 set nowrap
+" 背景をダークモード
+set background=dark
 " 不可視文字を表示
 set list
 " 不可視文字の表示記号設定
@@ -71,8 +63,10 @@ set ambiwidth=double
 "  autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkRed guibg=DarkRed
 "  autocmd VimEnter,WinEnter * match IdeographicSpace /　/
 "augroup END
+"}}}
 
-"- Tab, Indent -"
+"-- Tab, Indent --"
+"{{{
 " タブ入力を複数の空白に置き換え
 set expandtab
 " タブ文字が画面上で占める幅
@@ -83,8 +77,10 @@ set shiftwidth=2
 set autoindent
 " C言語風のインデント
 set smartindent
+"}}}
 
-"- Search -"
+"-- Search --"
+"{{{
 " インクリメンタルサーチを有効化
 set incsearch
 " 検索時に大文字小文字を区別せずに比較
@@ -95,8 +91,10 @@ set smartcase
 set hlsearch
 " 末尾まで検索後に先頭から再検索
 set wrapscan
+"}}}
 
-"- Other -"
+"-- Other --"
+"{{{
 " インサートモード中にすべてのバックスペースを許可
 set backspace=indent,eol,start
 " 自動整形の実行方法を決めるフラグ(マルチバイト向けなどの設定)
@@ -139,8 +137,8 @@ set clipboard=unnamed
 "---------------------------------------
 " Key Mapping
 "---------------------------------------
+"-- Normal --"
 "{{{
-"- Normal -"
 " Leaderキーをスペースに割り当て
 let mapleader = "\<Space>"
 " ウィンドウの移動
@@ -153,18 +151,20 @@ nnoremap <silent> <ESC><ESC> :noh<CR>
 " バッファを再読み込み
 nnoremap <silent> <C-e> :edit!<CR>
 " カーソル下の単語(完全一致)で検索&yank
-nnoremap <silent> <Space><Space> "*yiw:let @/ = '\<' . @* . '\>'<CR>:set hlsearch<CR>
-" カーソル下の単語(部分一致)で検索&yank
-nnoremap <silent> <Space>/ "*yiw:let @/ =  @* <CR>:set hlsearch<CR>
+nnoremap <silent> <Space><Space> ""yiw:let @/ = '\<' . @" . '\>'<CR>:set hlsearch<CR>
 " コピー&ペースト
 vnoremap <C-c> "+y
 map <S-Insert> "+gP
+"}}}
 
-"- other -"
+"-- other --"
+"{{{
 " 現在開いているファイルを関連付けられたアプリケーションで開く
 nnoremap <Leader><CR> :!open %:p<CR>
+"}}}
 
-"- vimgrep -"
+"-- vimgrep --"
+"{{{
 " 検索結果の移動
 nnoremap <C-n> :cnext<CR>
 nnoremap <C-p> :cprevious<CR>
@@ -174,16 +174,11 @@ nnoremap <Leader>j :vimgrep /<C-r><C-w>/j **/*<CR>
 nnoremap <Leader>J :vimgrep /<C-r><C-w>/j %<CR>
 " Quickfixを自動で起動
 autocmd QuickFixCmdPost *grep* cwindow
-
-"- NeoVim -"
-" init.vimを再読み込み
-nnoremap <Leader>ss :source $NVIM/init.vim<CR>
 "}}}
 
 
-
 "---------------------------------------
-" Other Setting
+" Other
 "---------------------------------------
 " {{{
 " 同ディレクトリのローカルファイルから設定を読み込み
@@ -193,3 +188,7 @@ if filereadable($HOME.'/'.$MYVIMRC)
 endif
 "}}}
 
+
+" colorscheme
+"colorscheme darkblue
+colorscheme gruvbox
