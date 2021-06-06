@@ -13,7 +13,7 @@
 #---------------------------------------
 #-- locale --#
 #{{{
-export LANG=ja_JP.UTF8
+export LANG=ja_JP.UTF-8
 # 文字の判定・操作・文字数のカウント
 export LC_CTYPE=ja_JP.UTF-8
 # メッセージの言語
