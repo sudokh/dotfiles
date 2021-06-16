@@ -7,6 +7,11 @@
 #  - Options Index (zsh)
 #     https://thuis.roelschroeven.net/doc/zsh-doc/html/Options-Index.html
 #--------------------------------------
+MY_ZSHRC=".`whoami`_zshrc"
+if [ -e ~/$MY_ZSHRC ] ; then
+  source ~/$MY_ZSHRC
+else
+fi
 
 #---------------------------------------
 # Normal
@@ -20,6 +25,8 @@ export LC_CTYPE=ja_JP.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 # 日付・時刻
 export LC_TIME=en_US.UTF-8
+#export TMUX_MODE=hoge
+TMUX_MODE=hoge
 #}}}
 
 #-- Prompt --#
@@ -150,9 +157,11 @@ alias dcd='docker-compose down'
 alias dcr='docker-compose restart'
 
 ## dotfile
-alias zs='source ~/.zshrc'
+alias zso='source ~/.zshrc'
 alias tmux='tmux -u'
-alias ts='tmux source ~/.tmux.conf'
+alias tso='tmux source ~/.tmux.conf'
+alias tmain='change_tmux_mode "MAIN"'
+alias tsub='change_tmux_mode "SUB"'
 #}}}
 
 #-- bindkey --#
@@ -210,7 +219,7 @@ setopt combiningchars
 # コマンドのスペルミスを指摘
 setopt correct
 # フロー制御(C-s, C-q)を無効
-setopt no_flow_control
+setopt noflowcontrol
 # コマンドにコメントを付与可能
 setopt interactivecomments
 # PROMPT変数の中の変数参照を表示時に展開
