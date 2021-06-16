@@ -25,8 +25,6 @@ export LC_CTYPE=ja_JP.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 # 日付・時刻
 export LC_TIME=en_US.UTF-8
-#export TMUX_MODE=hoge
-TMUX_MODE=hoge
 #}}}
 
 #-- Prompt --#
