@@ -4,7 +4,7 @@ CURRENT_DIR=`pwd -P`
 DEST_DIR=~
 
 function lnfile () {
-  DEST_FILE=$DEST_DIR/$1
+  DEST_FILE=$DEST_DIR/.$1
   SRC_FILE=$CURRENT_DIR/$1
 
   if [ -e $DEST_FILE ]; then
@@ -29,7 +29,7 @@ function create_my_zshrc () {
   fi
 }
 
-lnfile .vimrc
-lnfile .zshrc
-lnfile .tmux.conf
+lnfile vimrc
+lnfile zshrc
+lnfile tmux.conf
 create_my_zshrc
