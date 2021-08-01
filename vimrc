@@ -77,6 +77,8 @@ set shiftwidth=2
 set autoindent
 " C言語風のインデント
 set smartindent
+" htmlファイル編集時のインデント関連
+autocmd BufRead,BufNewFile *.htm,*.html setlocal tabstop=2 shiftwidth=2 softtabstop=2
 "}}}
 
 "-- Search --"
