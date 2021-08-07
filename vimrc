@@ -131,12 +131,6 @@ set noequalalways
 set splitbelow
 " 新しいウィンドウを右に開く
 set splitright
-" OSとクリップボードを共有
-if has('mac')
-  set clipboard+=unnamed
-else
-  set clipboard+=unnamedplus
-endif
 "}}}
 
 
@@ -156,8 +150,16 @@ nnoremap dl <C-w>l
 nnoremap <silent> <ESC><ESC> :noh<CR>
 " バッファを再読み込み
 nnoremap <silent> <C-e> :edit!<CR>
-" カーソル下の単語(完全一致)で検索&yank
-nnoremap <silent> <Space><Space> "*yiw:let @/ = '\<' . @" . '\>'<CR>:set hlsearch<CR>
+
+" カーソル下の単語(完全一致)で検索, yank
+" & yank時にOSとクリップボードを共有
+if has('mac')
+  set clipboard+=unnamed
+  nnoremap <silent> <Space><Space> "*yiw:let @/ = '\<' . @" . '\>'<CR>:set hlsearch<CR>
+else
+  set clipboard+=unnamedplus
+  nnoremap <silent> <Space><Space> ""yiw:let @/ = '\<' . @" . '\>'<CR>:set hlsearch<CR>
+endif
 " コピー&ペースト
 vnoremap <C-c> "+y
 map <S-Insert> "+gP
