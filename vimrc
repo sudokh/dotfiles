@@ -186,6 +186,30 @@ autocmd QuickFixCmdPost *grep* cwindow
 
 
 "---------------------------------------
+" Plugin
+"---------------------------------------
+"{{{
+" Colorscheme
+colorscheme gruvbox
+
+" vim-table-mode
+nnoremap <Leader>tm :TableModeToggle<CR>
+""for markdown(default)
+"let g:table_mode_corner='|'
+""for REST
+"let g:table_mode_corner_corner='+'
+"let g:table_mode_header_fillchar='='
+
+" NERDTree
+map <silent> <Leader>n :NERDTreeToggle<CR>
+
+" nvim-miniyank
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+"}}}
+
+
+"---------------------------------------
 " Other
 "---------------------------------------
 " {{{
@@ -196,7 +220,3 @@ if filereadable($HOME.'/'.$MYVIMRC)
 endif
 "}}}
 
-
-" colorscheme
-"colorscheme darkblue
-colorscheme gruvbox
