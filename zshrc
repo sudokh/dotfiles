@@ -326,6 +326,15 @@ hosts=( ${(@)${${(M)${(s:# :)${(zj:# :)${(Lf)"$([[ -f ~/.ssh/config ]] \
 && < ~/.ssh/config)"}%%\#*}}##host(|name) *}#host(|name) }/\*} )
 #}}}
 
+#---------------------------------------
+# Environment variable
+#---------------------------------------
+#{{{
+# for nvim
+export XDG_CONFIG_HOME="$HOME/.config"
+# for pyenv
+eval "$(pyenv init --path)"
+#}}}
 
 #---------------------------------------
 # Other

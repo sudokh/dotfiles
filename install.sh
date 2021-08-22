@@ -1,10 +1,7 @@
 #!/bin/bash
 
-CURRENT_DIR=`pwd -P`
-DEST_DIR=~
-
 function lnfile () {
-  DEST_FILE=$DEST_DIR/.$1
+  DEST_FILE=$HOME/.$1
   SRC_FILE=$CURRENT_DIR/$1
 
   if [ -e $DEST_FILE ]; then
@@ -16,7 +13,7 @@ function lnfile () {
 }
 
 function create_my_zshrc () {
-  MY_ZSHRC=$DEST_DIR/.`whoami`_zshrc
+  MY_ZSHRC=$HOME/.`whoami`_zshrc
   TMUX_SCRITP_DIR=$CURRENT_DIR/scripts/tmux
 
   if [ -e $MY_ZSHRC ]; then
@@ -29,7 +26,47 @@ function create_my_zshrc () {
   fi
 }
 
+function MAKEDIR() {
+  TARGET_DIR=$1
+
+  if [ -d $TARGET_DIR ]; then
+    echo "$TARGET_DIR already exists."
+  else
+    mkdir $TARGET_DIR
+    echo "$TARGET_DIR is created!"
+  fi
+}
+
+
+CURRENT_DIR=`pwd -P`
+HOME=~
+CONFIG_DIR=~/.config
+NVIM_DIR=$CONFIG_DIR/nvim
+DEIN_DIR=~/.cache/dein
+
+
+#-----------
+# main
+#-----------
+# vim, zsh, tmux の設定ファイルのシンボリックリンクを作成
 lnfile vimrc
 lnfile zshrc
 lnfile tmux.conf
+
+# 自作のスクリプトへのパスを通すために，パスを記述したファイルを動的に生成
 create_my_zshrc
+
+# nvim 向けのディレクトリを作成
+MAKEDIR $CONFIG_DIR
+MAKEDIR $NVIM_DIR
+MAKEDIR $DEIN_DIR
+
+# deinを未インストールの場合は，インストール
+if [ -z "$(ls $DEIN_DIR)" ]; then
+  cd $NVIM_DIR
+  curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+  sh ./installer.sh ~/.cache/dein
+else
+  echo "dein is already installed"
+fi
+
