@@ -333,7 +333,9 @@ hosts=( ${(@)${${(M)${(s:# :)${(zj:# :)${(Lf)"$([[ -f ~/.ssh/config ]] \
 # for nvim
 export XDG_CONFIG_HOME="$HOME/.config"
 # for pyenv
-eval "$(pyenv init --path)"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init --path)"
+fi
 #}}}
 
 #---------------------------------------

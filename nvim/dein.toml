@@ -1,0 +1,87 @@
+#---------------------------------------
+# Usability
+#---------------------------------------
+# NERDTree
+[[plugins]]
+repo = 'preservim/nerdtree'
+hook_add = '''
+  let g:NERDTreeAutoDeleteBuffer = 1
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+'''
+
+# winresizer
+[[plugins]]
+repo = 'simeji/winresizer'
+hook_add = '''
+let g:winresizer_start_key = '<Leader>e'
+'''
+
+#---------------------------------------
+# Edit
+#---------------------------------------
+# lexima.vim
+[[plugins]]
+repo = 'cohama/lexima.vim'
+
+# vim-surround
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+# deoplete.nvim
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+'''
+
+# nvim-miniyank
+[[plugins]]
+repo = 'bfredl/nvim-miniyank'
+hook_add = '''
+'''
+
+# vim-table-mode
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode'
+hook_add = '''
+  let g:table_mode_corner='|'
+'''
+
+
+#---------------------------------------
+# Appearance
+#---------------------------------------
+## Colorscheme
+[[plugins]]
+repo = 'morhetz/gruvbox'
+
+## lightline.vim
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+  let g:lightline = {
+        \ 'colorscheme': 'gruvbox',
+        \ }
+'''
+
+## Colorscheme for lightline
+[[plugins]]
+repo = 'shinchu/lightline-gruvbox.vim'
+
+## syntax
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+
+#---------------------------------------
+# Git
+#---------------------------------------
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+  let g:gitgutter_highlight_lines = 1
+'''
+

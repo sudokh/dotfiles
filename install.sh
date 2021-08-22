@@ -1,8 +1,22 @@
 #!/bin/bash
 
-function lnfile () {
-  DEST_FILE=$HOME/.$1
+function hidden_lnfile () {
+  DEST_FILE=$2/.$1
   SRC_FILE=$CURRENT_DIR/$1
+
+  common_lnfile $SRC_FILE $DEST_FILE
+}
+
+function lnfile () {
+  DEST_FILE=$2/$1
+  SRC_FILE=$CURRENT_DIR/$1
+
+  common_lnfile $SRC_FILE $DEST_FILE
+}
+
+function common_lnfile () {
+  SRC_FILE=$1
+  DEST_FILE=$2
 
   if [ -e $DEST_FILE ]; then
     echo "$DEST_FILE already exists."
@@ -11,6 +25,7 @@ function lnfile () {
     echo "$DEST_FILE is installed !"
   fi
 }
+
 
 function create_my_zshrc () {
   MY_ZSHRC=$HOME/.`whoami`_zshrc
@@ -39,7 +54,7 @@ function MAKEDIR() {
 
 
 CURRENT_DIR=`pwd -P`
-HOME=~
+#HOME=~
 CONFIG_DIR=~/.config
 NVIM_DIR=$CONFIG_DIR/nvim
 DEIN_DIR=~/.cache/dein
@@ -49,9 +64,9 @@ DEIN_DIR=~/.cache/dein
 # main
 #-----------
 # vim, zsh, tmux の設定ファイルのシンボリックリンクを作成
-lnfile vimrc
-lnfile zshrc
-lnfile tmux.conf
+hidden_lnfile vimrc $HOME
+hidden_lnfile zshrc $HOME
+hidden_lnfile tmux.conf $HOME
 
 # 自作のスクリプトへのパスを通すために，パスを記述したファイルを動的に生成
 create_my_zshrc
@@ -60,6 +75,9 @@ create_my_zshrc
 MAKEDIR $CONFIG_DIR
 MAKEDIR $NVIM_DIR
 MAKEDIR $DEIN_DIR
+
+lnfile nvim/init.vim $CONFIG_DIR
+lnfile nvim/dein.toml $CONFIG_DIR
 
 # deinを未インストールの場合は，インストール
 if [ -z "$(ls $DEIN_DIR)" ]; then
