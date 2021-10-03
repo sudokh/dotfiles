@@ -12,6 +12,7 @@ cd $HOME \
 
 # Contents
 
+```
 dotfiles/
  |-nvim/
  |  |-dein.toml
@@ -38,3 +39,4 @@ dotfiles/
  |-tmux.conf
  |-vimrc
  `-zshrc
+```
