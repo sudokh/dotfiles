@@ -206,6 +206,16 @@ map <silent> <Leader>n :NERDTreeToggle<CR>
 " nvim-miniyank
 map p <Plug>(miniyank-autoput)
 map P <Plug>(miniyank-autoPut)
+
+"vim-fugitive
+nnoremap <leader>ga :Git add %:p<CR><CR>
+nnoremap <leader>gc :Gcommit<CR><CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>gb :Gblame<CR>
+
 "}}}
 
 
