@@ -102,66 +102,36 @@
     {
       "description": "Ctrl+[を押したときに、英数キーも送信する（vim用） (rev 2)",
       "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "open_bracket",
-            "modifiers": {
-              "mandatory": [
-                "control"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "open_bracket",
-              "modifiers": [
-                "control"
-              ]
-            },
-            {
-              "key_code": "japanese_eisuu"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "keyboard_type_if",
-              "keyboard_types": [
-                "ansi",
-                "iso"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "close_bracket",
-            "modifiers": {
-              "mandatory": [
-                "control"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "close_bracket",
-              "modifiers": [
-                "control"
-              ]
-            },
-            {
-              "key_code": "japanese_eisuu"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "keyboard_type_if",
-              "keyboard_types": [
-                "jis"
-              ]
-            }
-          ]
+       {
+         "type": "basic",
+         "from": {
+           "key_code": "open_bracket",
+           "modifiers": {
+             "mandatory": [
+               "control"
+             ]
+           }
+         },
+         "to": [
+           {
+             "key_code": "open_bracket",
+             "modifiers": [
+               "control"
+             ]
+           },
+           {
+             "key_code": "japanese_eisuu"
+           }
+         ],
+         "conditions": [
+           {
+             "type": "keyboard_type_if",
+             "keyboard_types": [
+               "ansi",
+               "iso"
+             ]
+           }
+         ]
         }
       ]
     }
