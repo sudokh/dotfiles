@@ -157,9 +157,8 @@ alias dcr='docker-compose restart'
 ## dotfile
 alias zso='source ~/.zshrc'
 alias tmux='tmux -u'
+alias tmuxa='tmux -u'
 alias tso='tmux source ~/.tmux.conf'
-alias tmain='change_tmux_mode "MAIN"'
-alias tsub='change_tmux_mode "SUB"'
 #}}}
 
 #-- bindkey --#
