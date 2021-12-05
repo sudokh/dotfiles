@@ -28,9 +28,9 @@ if [ $1 = "MAIN" ]; then
     tmux source ~/tmp_tmux_conf
     echo "Setting Changed ! (-> MAIN)"
   else
-    sed -i -e "s/$SUB_COLOR/$MAIN_COLOR/" ~/tmp_tmux_conf
-    sed -i -e "s/$SUB_PREFIX_KEY/$MAIN_PREFIX_KEY/" ~/tmp_tmux_conf
-    sed -i -e "s/$TMUX_MODE_SUB/$TMUX_MODE_MAIN/" ~/tmp_tmux_conf
+    cat ~/tmp_tmux_conf | (rm ~/tmp_tmux_conf; sed "s/$SUB_COLOR/$MAIN_COLOR/" > ~/tmp_tmux_conf)
+    cat ~/tmp_tmux_conf | (rm ~/tmp_tmux_conf; sed "s/$SUB_PREFIX_KEY/$MAIN_PREFIX_KEY/" > ~/tmp_tmux_conf)
+    cat ~/tmp_tmux_conf | (rm ~/tmp_tmux_conf; sed "s/$TMUX_MODE_SUB/$TMUX_MODE_MAIN/" > ~/tmp_tmux_conf)
     tmux source ~/tmp_tmux_conf
     echo "Setting Changed ! (-> MAIN)"
   fi
@@ -39,9 +39,9 @@ else
     tmux source ~/tmp_tmux_conf
     echo "Setting Changed ! (-> SUB)"
   else
-    sed -i -e "s/$MAIN_COLOR/$SUB_COLOR/" ~/tmp_tmux_conf
-    sed -i -e "s/$MAIN_PREFIX_KEY/$SUB_PREFIX_KEY/" ~/tmp_tmux_conf
-    sed -i -e "s/$TMUX_MODE_MAIN/$TMUX_MODE_SUB/" ~/tmp_tmux_conf
+    cat ~/tmp_tmux_conf | (rm ~/tmp_tmux_conf; sed "s/$MAIN_COLOR/$SUB_COLOR/" > ~/tmp_tmux_conf)
+    cat ~/tmp_tmux_conf | (rm ~/tmp_tmux_conf; sed "s/$MAIN_PREFIX_KEY/$SUB_PREFIX_KEY/" > ~/tmp_tmux_conf)
+    cat ~/tmp_tmux_conf | (rm ~/tmp_tmux_conf; sed "s/$TMUX_MODE_MAIN/$TMUX_MODE_SUB/" > ~/tmp_tmux_conf)
     tmux source ~/tmp_tmux_conf
     echo "Setting Changed ! (-> SUB)"
   fi
