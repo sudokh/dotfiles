@@ -216,8 +216,8 @@ nnoremap <Leader>tm :TableModeToggle<CR>
 map <silent> <Leader>n :NERDTreeToggle<CR>
 
 " nvim-miniyank
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
+"map p <Plug>(miniyank-autoput)
+"map P <Plug>(miniyank-autoPut)
 
 "vim-fugitive
 nnoremap <leader>ga :Git add %:p<CR><CR>
@@ -230,6 +230,37 @@ nnoremap <leader>gb :Gblame<CR>
 
 "vim-gitgutter
 nnoremap <leader>gg :GitGutterLineHighlightsToggle<CR>
+
+"" vim-plug
+"call plug#begin()
+"Plug 'simeji/winresizer'
+"let g:winresizer_start_key = '<Leader>e'
+"Plug 'tpope/vim-fugitive'
+"Plug 'airblade/vim-gitgutter'
+"Plug 'markonm/traces.vim'
+"Plug 'lambdalisue/fern.vim'
+"Plug 'junegunn/fzf.vim'
+"Plug 'morhetz/gruvbox'
+"Plug 'itchyny/lightline.vim'
+"let g:lightline = {
+"      \ 'colorscheme': 'gruvbox',
+"      \ }
+"Plug 'shinchu/lightline-gruvbox.vim'
+"Plug 'sheerun/vim-polyglot'
+"Plug 'Shougo/ddc.vim'
+"Plug 'mattn/emmet-vim'
+"Plug 'skanehira/preview-markdown.vim'
+"Plug 'MichaelMure/mdr'
+"Plug 'cohama/lexima.vim'
+"Plug 'mattn/vim-maketable'
+"Plug 'tpope/vim-surround'
+"Plug 'mattn/sonictemplate-vim'
+"Plug 'prabirshrestha/vim-lsp'
+"Plug 'mattn/vim-lsp-settings'
+"Plug 'thinca/vim-quickrun'
+"Plug 'skanehira/translate.vim'
+"Plug 'tyru/open-browser.vim'
+"call plug#end()
 
 "}}}
 
