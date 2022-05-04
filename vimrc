@@ -26,9 +26,9 @@ set number
 set title
 " カーソルのある行を強調表示
 set cursorline
-hi CursorLine guibg=#EBEBEB ctermbg=235
+hi CursorLine   guibg=#EBEBEB ctermbg=235
 hi CursorColumn guibg=#EBEBEB ctermbg=235
-hi Folded guibg=#EBEBEB ctermbg=235
+hi Folded       guibg=#EBEBEB ctermbg=235
 " カーソルのある列を強調表示
 set cursorcolumn
 " 対応する括弧を強調表示
@@ -270,9 +270,9 @@ nnoremap <leader>gg :GitGutterLineHighlightsToggle<CR>
 "---------------------------------------
 " {{{
 " 同ディレクトリのローカルファイルから設定を読み込み
-let $MYVIMRC = '.myvimrc.vim'
-if filereadable($HOME.'/'.$MYVIMRC)
-  source $HOME/$MYVIMRC
-endif
+"let $MYVIMRC = '.myvimrc.vim'
+"if filereadable($HOME.'/'.$MYVIMRC)
+"  source $HOME/$MYVIMRC
+"endif
 "}}}
 
