@@ -338,6 +338,8 @@ fi
 
 # for node.js
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+# for golang
+export GOPATH="$HOME/Project/go"
 
 #}}}
 

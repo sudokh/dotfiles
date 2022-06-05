@@ -57,12 +57,6 @@ set listchars=tab:>-,extends:<,trail:-
 syntax enable
 " 全角の記号の幅を固定
 set ambiwidth=double
-"" 全角スペースを可視化
-"augroup highlightIdegraphicSpace
-"  autocmd!
-"  autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkRed guibg=DarkRed
-"  autocmd VimEnter,WinEnter * match IdeographicSpace /　/
-"augroup END
 "}}}
 
 "-- Tab, Indent --"
@@ -113,6 +107,8 @@ set nobackup
 set viminfo=
 " undoファイルを作成しない
 set noundofile
+" カレントディレクトリを自動で変更
+set autochdir
 " テキスト中の{と}で折りたたみを定義
 set foldmethod=marker
 " Vimで扱う色数
@@ -141,22 +137,28 @@ set splitright
 "{{{
 " Leaderキーをスペースに割り当て
 let mapleader = "\<Space>"
+
 " ウィンドウの移動
 nnoremap dh <C-w>h
 nnoremap dj <C-w>j
 nnoremap dk <C-w>k
 nnoremap dl <C-w>l
+
 " ハイライトを消す
 nnoremap <silent> <ESC><ESC> :noh<CR>
 " バッファを再読み込み
 nnoremap <silent> <C-e> :edit!<CR>
+" vimrcを再読み込み
+nnoremap <Leader>so :source $MYVIMRC<CR>
 
 " カーソル下の単語(完全一致)で検索, yank
 " & yank時にOSとクリップボードを共有
 if has('mac')
+  " yankした文字を*レジスタ(無名レジスタ)に保存
   set clipboard+=unnamed
   nnoremap <silent> <Space><Space> "*yiw:let @/ = '\<' . @" . '\>'<CR>:set hlsearch<CR>
 else
+  " yankした文字を+レジスタ(OSのクリップボード)に保存
   set clipboard+=unnamedplus
   nnoremap <silent> <Space><Space> ""yiw:let @/ = '\<' . @" . '\>'<CR>:set hlsearch<CR>
 endif
@@ -185,10 +187,10 @@ autocmd QuickFixCmdPost *grep* cwindow
 "}}}
 
 
+
 "---------------------------------------
-" Plugin
+" Other
 "---------------------------------------
-"{{{
 "-- netrw --"
 " ファイルツリーの表示形式、1にするとls -laのような表示になります
 let g:netrw_liststyle=1
@@ -201,73 +203,6 @@ let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
 " プレビューウィンドウを垂直分割で表示する
 let g:netrw_preview=1
 
-" Colorscheme
-colorscheme gruvbox
-
-" vim-table-mode
-nnoremap <Leader>tm :TableModeToggle<CR>
-""for markdown(default)
-"let g:table_mode_corner='|'
-""for REST
-"let g:table_mode_corner_corner='+'
-"let g:table_mode_header_fillchar='='
-
-" NERDTree
-map <silent> <Leader>n :NERDTreeToggle<CR>
-
-" nvim-miniyank
-"map p <Plug>(miniyank-autoput)
-"map P <Plug>(miniyank-autoPut)
-
-"vim-fugitive
-nnoremap <leader>ga :Git add %:p<CR><CR>
-nnoremap <leader>gc :Gcommit<CR><CR>
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gp :Gpush<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gl :Glog<CR>
-nnoremap <leader>gb :Gblame<CR>
-
-"vim-gitgutter
-nnoremap <leader>gg :GitGutterLineHighlightsToggle<CR>
-
-"" vim-plug
-"call plug#begin()
-"Plug 'simeji/winresizer'
-"let g:winresizer_start_key = '<Leader>e'
-"Plug 'tpope/vim-fugitive'
-"Plug 'airblade/vim-gitgutter'
-"Plug 'markonm/traces.vim'
-"Plug 'lambdalisue/fern.vim'
-"Plug 'junegunn/fzf.vim'
-"Plug 'morhetz/gruvbox'
-"Plug 'itchyny/lightline.vim'
-"let g:lightline = {
-"      \ 'colorscheme': 'gruvbox',
-"      \ }
-"Plug 'shinchu/lightline-gruvbox.vim'
-"Plug 'sheerun/vim-polyglot'
-"Plug 'Shougo/ddc.vim'
-"Plug 'mattn/emmet-vim'
-"Plug 'skanehira/preview-markdown.vim'
-"Plug 'MichaelMure/mdr'
-"Plug 'cohama/lexima.vim'
-"Plug 'mattn/vim-maketable'
-"Plug 'tpope/vim-surround'
-"Plug 'mattn/sonictemplate-vim'
-"Plug 'prabirshrestha/vim-lsp'
-"Plug 'mattn/vim-lsp-settings'
-"Plug 'thinca/vim-quickrun'
-"Plug 'skanehira/translate.vim'
-"Plug 'tyru/open-browser.vim'
-"call plug#end()
-
-"}}}
-
-
-"---------------------------------------
-" Other
-"---------------------------------------
 " {{{
 " 同ディレクトリのローカルファイルから設定を読み込み
 "let $MYVIMRC = '.myvimrc.vim'
