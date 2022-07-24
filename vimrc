@@ -56,7 +56,7 @@ set listchars=tab:>-,extends:<,trail:-
 " 構文ハイライトを有効化
 syntax enable
 " 全角の記号の幅を固定
-set ambiwidth=double
+"set ambiwidth=double
 "}}}
 
 "-- Tab, Indent --"

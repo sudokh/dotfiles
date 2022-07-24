@@ -23,6 +23,9 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 " Plugin installation {{{
 "---------------------------------------
 call plug#begin()
+"fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " filer
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'lambdalisue/fern.vim'
@@ -49,7 +52,7 @@ Plug 'tpope/vim-fugitive'
 " show git diff
 Plug 'airblade/vim-gitgutter'
 " html editing
-Plug 'mattn/emmet-vim'
+"Plug 'mattn/emmet-vim'
 call plug#end()
 "}}}
 
@@ -102,8 +105,8 @@ nnoremap <leader>gc :Gcommit<CR><CR>
 nnoremap <leader>gs :Git<CR>
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gl :Glog<CR>
-nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gl :Gclog<CR>
+nnoremap <leader>gb :Git blame<CR>
 "}}}
 
 "vim-gitgutter {{{
@@ -115,7 +118,6 @@ nnoremap <leader>gg :GitGutterLineHighlightsToggle<CR>
 "mattn/vim-lsp-settings
 "markonm/traces.vim
 "junegunn/fzf.vim
-"Shougo/ddc.vim
 "skanehira/preview-markdown.vim
 "MichaelMure/mdr
 "mattn/vim-maketable

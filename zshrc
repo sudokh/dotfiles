@@ -336,6 +336,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init --path)"
 fi
 
+# for lima
+export DOCKER_HOST=unix://$HOME/docker.sock
+export LIMA_INSTANCE=docker
+
 # for node.js
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 # for golang
