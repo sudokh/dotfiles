@@ -7,7 +7,6 @@
 " Normal
 "---------------------------------------
 "-- Encode --"
-"{{{
 " ファイル読み込み時の文字コード
 set encoding=utf-8
 " ファイル保存時の文字コード
@@ -16,10 +15,8 @@ set fileencoding=utf-8
 set fileencodings=utf-8,euc-jp,sjis,cp932
 " ファイル読み込み時に，想定される改行コードを指定
 set fileformats=unix,mac,dos
-"}}}
 
 "-- Appearance --"
-"{{{
 " 行番号を表示
 set number
 " タイトルを表示
@@ -57,10 +54,8 @@ set listchars=tab:>-,extends:<,trail:-
 syntax enable
 " 全角の記号の幅を固定
 "set ambiwidth=double
-"}}}
 
 "-- Tab, Indent --"
-"{{{
 " タブ入力を複数の空白に置き換え
 set expandtab
 " タブ文字が画面上で占める幅
@@ -73,10 +68,8 @@ set autoindent
 set smartindent
 " htmlファイル編集時のインデント関連
 autocmd BufRead,BufNewFile *.htm,*.html setlocal tabstop=2 shiftwidth=2 softtabstop=2
-"}}}
 
 "-- Search --"
-"{{{
 " インクリメンタルサーチを有効化
 set incsearch
 " 検索時に大文字小文字を区別せずに比較
@@ -87,10 +80,8 @@ set smartcase
 set hlsearch
 " 末尾まで検索後に先頭から再検索
 set wrapscan
-"}}}
 
 "-- Other --"
-"{{{
 " インサートモード中にすべてのバックスペースを許可
 set backspace=indent,eol,start
 " 自動整形の実行方法を決めるフラグ(マルチバイト向けなどの設定)
@@ -127,14 +118,12 @@ set noequalalways
 set splitbelow
 " 新しいウィンドウを右に開く
 set splitright
-"}}}
 
 
 "---------------------------------------
 " Key Mapping
 "---------------------------------------
 "-- Normal --"
-"{{{
 " Leaderキーをスペースに割り当て
 let mapleader = "\<Space>"
 
@@ -165,16 +154,12 @@ endif
 " コピー&ペースト
 vnoremap <C-c> "+y
 map <S-Insert> "+gP
-"}}}
 
 "-- other --"
-"{{{
 " 現在開いているファイルを関連付けられたアプリケーションで開く
 nnoremap <Leader><CR> :!open %:p<CR>
-"}}}
 
 "-- vimgrep --"
-"{{{
 " 検索結果の移動
 nnoremap <C-n> :cnext<CR>
 nnoremap <C-p> :cprevious<CR>
@@ -184,7 +169,6 @@ nnoremap <Leader>j :vimgrep /<C-r><C-w>/j **/*<CR>
 nnoremap <Leader>J :vimgrep /<C-r><C-w>/j %<CR>
 " Quickfixを自動で起動
 autocmd QuickFixCmdPost *grep* cwindow
-"}}}
 
 
 
@@ -203,11 +187,9 @@ let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
 " プレビューウィンドウを垂直分割で表示する
 let g:netrw_preview=1
 
-" {{{
 " 同ディレクトリのローカルファイルから設定を読み込み
 "let $MYVIMRC = '.myvimrc.vim'
 "if filereadable($HOME.'/'.$MYVIMRC)
 "  source $HOME/$MYVIMRC
 "endif
-"}}}
 

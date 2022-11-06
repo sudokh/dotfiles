@@ -17,7 +17,6 @@ fi
 # Normal
 #---------------------------------------
 #-- locale --#
-#{{{
 export LANG=ja_JP.UTF-8
 # 文字の判定・操作・文字数のカウント
 export LC_CTYPE=ja_JP.UTF-8
@@ -25,10 +24,8 @@ export LC_CTYPE=ja_JP.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 # 日付・時刻
 export LC_TIME=en_US.UTF-8
-#}}}
 
 #-- Prompt --#
-#{{{
 _prompt_colors=(
   "%F{white}"   # ユーザ名，ドメイン名，ブランチ名
   "%F{green}"   # at, in
@@ -110,13 +107,11 @@ case "${TERM}" in
 esac
 
 
-#}}}
 
 #---------------------------------------
 # Key Mapping
 #---------------------------------------
 #-- Alias --#
-#{{{
 ## ls
 case ${OSTYPE} in
   # for Linux
@@ -159,10 +154,8 @@ alias zso='source ~/.zshrc'
 alias tmux='tmux -u'
 alias tmuxa='tmux -u'
 alias tso='tmux source ~/.tmux.conf'
-#}}}
 
 #-- bindkey --#
-#{{{
 # vi-style key bindings
 bindkey -v
 # use Ctrl-r for history in vi mode
@@ -186,14 +179,12 @@ fancy-ctrl-z () {
   fi
 }
 zle -N fancy-ctrl-z
-#}}}
 
 
 #---------------------------------------
 # Option
 #---------------------------------------
 #-- setopt --#
-#{{{
 # 補完後に末尾に移動
 setopt noalwaystoend
 
@@ -273,10 +264,8 @@ setopt sharehistory
 setopt prompt_percent
 # コマンド実行後は右プロンプトを消す
 setopt transient_rprompt
-#}}}
 
 #-- completion --#
-#{{{
 # 補完候補をハイライト
 zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*:messages' format '%B%F{yellow}%d%f%b'$DEFAULT
@@ -323,12 +312,10 @@ _cache_hosts=($( print_known_hosts ))
 
 hosts=( ${(@)${${(M)${(s:# :)${(zj:# :)${(Lf)"$([[ -f ~/.ssh/config ]] \
 && < ~/.ssh/config)"}%%\#*}}##host(|name) *}#host(|name) }/\*} )
-#}}}
 
 #---------------------------------------
 # Environment variable
 #---------------------------------------
-#{{{
 # for nvim
 export XDG_CONFIG_HOME="$HOME/.config"
 # for pyenv
@@ -337,7 +324,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # for lima
-export DOCKER_HOST=unix://$HOME/docker.sock
+export DOCKER_HOST=unix://$HOME/.lima/docker/sock/docker.sock
 export LIMA_INSTANCE=docker
 
 # for node.js
@@ -345,13 +332,11 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 # for golang
 export GOPATH="$HOME/Project/go"
 
-#}}}
 
 #---------------------------------------
 # Other
 #---------------------------------------
 #-- others --#
-#{{{
 #
 # コンソールのタイトルを設定
 case "${TERM}" in
@@ -361,10 +346,8 @@ case "${TERM}" in
 		}
 		;;
 esac
-#}}}
 
 #-- for surface --#
-#{{{
 ## battery script
 #export PATH="$PATH:$HOME/.dotfiles/scripts/tmux"
 #
@@ -384,4 +367,3 @@ esac
 #
 ## wsl-open alias
 #alias open='wsl-open'
-#}}}
