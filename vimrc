@@ -110,8 +110,6 @@ filetype plugin on
 filetype indent on
 " バッファの放棄時に隠れ(hidden)状態にする
 set hidden
-" キーコードシーケンスが終了するのを待つ時間を短くする
-set ttimeoutlen=1
 " ウィンドウサイズの自動調整を無効
 set noequalalways
 " 新しいウィンドウを下に開く

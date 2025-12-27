@@ -180,6 +180,22 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 
+.() {
+  if [ "$(uname)" = "Darwin" ]; then
+    if [ $# -eq 0 ]; then
+      # 引数がない場合、現在のディレクトリをFinderで開く
+      open .
+    else
+      # 引数がある場合、そのファイルを開く
+      open "$@"
+    fi
+  else
+    echo "This function is only supported on macOS."
+  fi
+}
+
+
+
 
 #---------------------------------------
 # Option
@@ -318,19 +334,33 @@ hosts=( ${(@)${${(M)${(s:# :)${(zj:# :)${(Lf)"$([[ -f ~/.ssh/config ]] \
 #---------------------------------------
 # for nvim
 export XDG_CONFIG_HOME="$HOME/.config"
-# for pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
-fi
 
 # for lima
-export DOCKER_HOST=unix://$HOME/.lima/docker/sock/docker.sock
+#export DOCKER_HOST=unix://$HOME/.lima/docker/sock/docker.sock
 export LIMA_INSTANCE=docker
 
 # for node.js
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 # for golang
 export GOPATH="$HOME/Project/go"
+
+# for npm
+export NVM_DIR="$HOME/.nvm"
+# [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads
+
+  
+# License: CC0
+eval "$(uv generate-shell-completion zsh)"
+
+_uv_run_mod() {
+  if [[ "$words[2]" == "run" && "$words[CURRENT]" != -* ]]; then
+    _arguments '*:filename:_files'
+  else
+    _uv "$@"
+  fi
+}
+compdef _uv_run_mod uv
 
 
 #---------------------------------------
@@ -346,24 +376,3 @@ case "${TERM}" in
 		}
 		;;
 esac
-
-#-- for surface --#
-## battery script
-#export PATH="$PATH:$HOME/.dotfiles/scripts/tmux"
-#
-## for $WINHOME, $GVIM, $MINGW, etc
-#source $HOME/.mysetting.sh
-#
-## for WSL, Windows Terminal, and Gvim
-#export WINTERM="$WINHOME/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState"
-#
-## gvim alias
-#alias gvim='(){
-#$GVIM/gvim.exe --remote-tab-silent $1 1>/dev/null 2>&1 &
-#}'
-#
-## gcc alias
-#alias gcc="$MINGW/bin/gcc.exe"
-#
-## wsl-open alias
-#alias open='wsl-open'
